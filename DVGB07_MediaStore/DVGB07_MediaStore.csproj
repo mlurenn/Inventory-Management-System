@@ -46,7 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Book.cs" />
+    <Compile Include="Dialogs\AddBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddBookForm.Designer.cs">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddGameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddGameForm.Designer.cs">
+      <DependentUpon>AddGameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddMovieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddMovieForm.Designer.cs">
+      <DependentUpon>AddMovieForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Book.cs" />
     <Compile Include="CSVHandler.cs" />
     <Compile Include="InventoryControl.cs">
       <SubType>UserControl</SubType>
@@ -60,12 +78,21 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game.cs" />
+    <Compile Include="Products\Game.cs" />
     <Compile Include="InventoryManager.cs" />
-    <Compile Include="Movie.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Products\Movie.cs" />
+    <Compile Include="Products\Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialogs\AddBookForm.resx">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddGameForm.resx">
+      <DependentUpon>AddGameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddMovieForm.resx">
+      <DependentUpon>AddMovieForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryControl.resx">
       <DependentUpon>InventoryControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +108,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="products.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.booksDataGrid = new System.Windows.Forms.DataGridView();
-            this.AddItemBtn = new System.Windows.Forms.Button();
+            this.addBookButton = new System.Windows.Forms.Button();
             this.BooksLabel = new System.Windows.Forms.Label();
             this.GamesLabel = new System.Windows.Forms.Label();
             this.gamesDataGrid = new System.Windows.Forms.DataGridView();
             this.MoviesLabel = new System.Windows.Forms.Label();
             this.moviesDataGrid = new System.Windows.Forms.DataGridView();
+            this.addGameButton = new System.Windows.Forms.Button();
+            this.addMovieButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).BeginInit();
@@ -45,10 +47,10 @@
             this.booksDataGrid.AllowUserToAddRows = false;
             this.booksDataGrid.AllowUserToDeleteRows = false;
             this.booksDataGrid.AllowUserToOrderColumns = true;
-            this.booksDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.booksDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.booksDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.booksDataGrid.Location = new System.Drawing.Point(3, 32);
+            this.booksDataGrid.Location = new System.Drawing.Point(3, 63);
             this.booksDataGrid.MultiSelect = false;
             this.booksDataGrid.Name = "booksDataGrid";
             this.booksDataGrid.ReadOnly = true;
@@ -60,20 +62,21 @@
             this.booksDataGrid.Size = new System.Drawing.Size(609, 100);
             this.booksDataGrid.TabIndex = 0;
             // 
-            // AddItemBtn
+            // addBookButton
             // 
-            this.AddItemBtn.Location = new System.Drawing.Point(258, 3);
-            this.AddItemBtn.Name = "AddItemBtn";
-            this.AddItemBtn.Size = new System.Drawing.Size(75, 23);
-            this.AddItemBtn.TabIndex = 1;
-            this.AddItemBtn.Text = "Add Item";
-            this.AddItemBtn.UseVisualStyleBackColor = true;
+            this.addBookButton.Location = new System.Drawing.Point(547, 40);
+            this.addBookButton.Name = "addBookButton";
+            this.addBookButton.Size = new System.Drawing.Size(65, 20);
+            this.addBookButton.TabIndex = 1;
+            this.addBookButton.Text = "Add Book";
+            this.addBookButton.UseVisualStyleBackColor = true;
+            this.addBookButton.Click += new System.EventHandler(this.AddBookBtn_Click);
             // 
             // BooksLabel
             // 
             this.BooksLabel.AutoSize = true;
             this.BooksLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BooksLabel.Location = new System.Drawing.Point(3, 9);
+            this.BooksLabel.Location = new System.Drawing.Point(3, 40);
             this.BooksLabel.Name = "BooksLabel";
             this.BooksLabel.Size = new System.Drawing.Size(54, 20);
             this.BooksLabel.TabIndex = 3;
@@ -83,7 +86,7 @@
             // 
             this.GamesLabel.AutoSize = true;
             this.GamesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GamesLabel.Location = new System.Drawing.Point(6, 147);
+            this.GamesLabel.Location = new System.Drawing.Point(6, 178);
             this.GamesLabel.Name = "GamesLabel";
             this.GamesLabel.Size = new System.Drawing.Size(61, 20);
             this.GamesLabel.TabIndex = 4;
@@ -94,10 +97,10 @@
             this.gamesDataGrid.AllowUserToAddRows = false;
             this.gamesDataGrid.AllowUserToDeleteRows = false;
             this.gamesDataGrid.AllowUserToOrderColumns = true;
-            this.gamesDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.gamesDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gamesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gamesDataGrid.Location = new System.Drawing.Point(3, 170);
+            this.gamesDataGrid.Location = new System.Drawing.Point(3, 201);
             this.gamesDataGrid.MultiSelect = false;
             this.gamesDataGrid.Name = "gamesDataGrid";
             this.gamesDataGrid.ReadOnly = true;
@@ -113,7 +116,7 @@
             // 
             this.MoviesLabel.AutoSize = true;
             this.MoviesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MoviesLabel.Location = new System.Drawing.Point(6, 292);
+            this.MoviesLabel.Location = new System.Drawing.Point(6, 323);
             this.MoviesLabel.Name = "MoviesLabel";
             this.MoviesLabel.Size = new System.Drawing.Size(58, 20);
             this.MoviesLabel.TabIndex = 6;
@@ -124,10 +127,10 @@
             this.moviesDataGrid.AllowUserToAddRows = false;
             this.moviesDataGrid.AllowUserToDeleteRows = false;
             this.moviesDataGrid.AllowUserToOrderColumns = true;
-            this.moviesDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.moviesDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.moviesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.moviesDataGrid.Location = new System.Drawing.Point(3, 315);
+            this.moviesDataGrid.Location = new System.Drawing.Point(3, 346);
             this.moviesDataGrid.MultiSelect = false;
             this.moviesDataGrid.Name = "moviesDataGrid";
             this.moviesDataGrid.ReadOnly = true;
@@ -139,18 +142,40 @@
             this.moviesDataGrid.Size = new System.Drawing.Size(609, 100);
             this.moviesDataGrid.TabIndex = 7;
             // 
-            // InvetoryControl
+            // addGameButton
+            // 
+            this.addGameButton.Location = new System.Drawing.Point(547, 178);
+            this.addGameButton.Name = "addGameButton";
+            this.addGameButton.Size = new System.Drawing.Size(65, 20);
+            this.addGameButton.TabIndex = 8;
+            this.addGameButton.Text = "Add Game";
+            this.addGameButton.UseVisualStyleBackColor = true;
+            this.addGameButton.Click += new System.EventHandler(this.addGameButton_Click);
+            // 
+            // addMovieButton
+            // 
+            this.addMovieButton.Location = new System.Drawing.Point(541, 323);
+            this.addMovieButton.Name = "addMovieButton";
+            this.addMovieButton.Size = new System.Drawing.Size(71, 20);
+            this.addMovieButton.TabIndex = 9;
+            this.addMovieButton.Text = "Add Movie";
+            this.addMovieButton.UseVisualStyleBackColor = true;
+            this.addMovieButton.Click += new System.EventHandler(this.addMovieButton_Click);
+            // 
+            // InventoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.addMovieButton);
+            this.Controls.Add(this.addGameButton);
             this.Controls.Add(this.moviesDataGrid);
             this.Controls.Add(this.MoviesLabel);
             this.Controls.Add(this.gamesDataGrid);
             this.Controls.Add(this.GamesLabel);
             this.Controls.Add(this.BooksLabel);
-            this.Controls.Add(this.AddItemBtn);
+            this.Controls.Add(this.addBookButton);
             this.Controls.Add(this.booksDataGrid);
-            this.Name = "InvetoryControl";
+            this.Name = "InventoryControl";
             this.Size = new System.Drawing.Size(615, 449);
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).EndInit();
@@ -163,11 +188,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView booksDataGrid;
-        private System.Windows.Forms.Button AddItemBtn;
+        private System.Windows.Forms.Button addBookButton;
         private System.Windows.Forms.Label BooksLabel;
         private System.Windows.Forms.Label GamesLabel;
         private System.Windows.Forms.DataGridView gamesDataGrid;
         private System.Windows.Forms.Label MoviesLabel;
         private System.Windows.Forms.DataGridView moviesDataGrid;
+        private System.Windows.Forms.Button addGameButton;
+        private System.Windows.Forms.Button addMovieButton;
     }
 }

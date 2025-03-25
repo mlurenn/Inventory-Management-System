@@ -25,10 +25,8 @@ namespace Media_Store
 
             books = new BindingList<Book>();
             booksSource = new BindingSource(books, null);
-
             games = new BindingList<Game>();
             gamesSource = new BindingSource(games, null);
-
             movies = new BindingList<Movie>();
             moviesSource = new BindingSource(movies, null);
         }

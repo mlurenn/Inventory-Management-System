@@ -9,10 +9,12 @@ namespace Media_Store
     {
         private static string filePath = @"C:\Users\melke\source\repos\DVGB07_MediaStore\DVGB07_MediaStore\products.csv";
 
-
         public static List<Product> LoadProducts()
         {
             List<Product> products = new List<Product>();
+            HashSet<int> existingPIDs = new HashSet<int>(); // Spåra unika PID:er
+            int maxPID = 0;
+
             Console.WriteLine($"Filväg för produkter: {filePath}");
 
             if (!File.Exists(filePath))
@@ -29,39 +31,43 @@ namespace Media_Store
                 string[] productValues = line.Split(',');
                 if (productValues.Length < 4) continue;
 
-                if (!int.TryParse(productValues[0], out int pid)) continue;
+                if (!int.TryParse(productValues[0], out int pid) || existingPIDs.Contains(pid))
+                {
+                    pid = ++maxPID; // Skapa nytt PID om dubblett hittas
+                }
+
                 string name = productValues[1];
                 if (!int.TryParse(productValues[2], out int price)) continue;
                 if (!int.TryParse(productValues[3], out int stock)) continue;
 
                 if (productValues.Length == 8)
                 {
-                    string author = string.IsNullOrWhiteSpace(productValues[4]) ? "" : productValues[4];
-                    string genre = string.IsNullOrWhiteSpace(productValues[5]) ? "" : productValues[5];
-                    string format = string.IsNullOrWhiteSpace(productValues[6]) ? "" : productValues[6];
-                    string language = string.IsNullOrWhiteSpace(productValues[7]) ? "" : productValues[7];
+                    string author = productValues[4];
+                    string genre = productValues[5];
+                    string format = productValues[6];
+                    string language = productValues[7];
                     products.Add(new Book(pid, name, price, stock, author, genre, format, language));
                 }
                 else if (productValues.Length == 6)
                 {
-                    string genre = string.IsNullOrWhiteSpace(productValues[4]) ? "" : productValues[4];
-                    string platform = string.IsNullOrWhiteSpace(productValues[5]) ? "" : productValues[5];
+                    string genre = productValues[4];
+                    string platform = productValues[5];
                     products.Add(new Game(pid, name, price, stock, genre, platform));
                 }
                 else if (productValues.Length == 7)
                 {
-                    string genre = string.IsNullOrWhiteSpace(productValues[4]) ? "" : productValues[4];
-                    string format = string.IsNullOrWhiteSpace(productValues[5]) ? "" : productValues[5];
+                    string genre = productValues[4];
+                    string format = productValues[5];
                     if (!int.TryParse(productValues[6], out int length)) continue;
                     products.Add(new Movie(pid, name, price, stock, genre, format, length));
                 }
+
+                existingPIDs.Add(pid);
+                maxPID = Math.Max(maxPID, pid);
             }
 
             return products;
         }
-
-
-
 
         public static void SaveProducts(List<Product> products)
         {
@@ -70,14 +76,18 @@ namespace Media_Store
 
             productRows.Add("PID,Name,Price,Stock,Author,Genre,Format,Language,Platform,Length");
 
+            int maxPID = products.Count > 0 ? products.Max(p => p.PID) : 0;
+
             foreach (var product in products)
             {
                 int pid = product.PID;
-                if (usedPIDs.Contains(pid))
+
+                if (usedPIDs.Contains(pid) || pid == 0)
                 {
-                    pid = usedPIDs.Max() + 1;
+                    pid = ++maxPID; // Ge nytt PID vid konflikt
                     product.PID = pid;
                 }
+
                 usedPIDs.Add(pid);
 
                 if (product is Book book)
@@ -96,6 +106,5 @@ namespace Media_Store
 
             File.WriteAllLines(filePath, productRows);
         }
-
     }
 }

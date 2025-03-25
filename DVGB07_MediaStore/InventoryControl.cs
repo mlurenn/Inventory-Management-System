@@ -15,6 +15,7 @@ namespace Media_Store
         BindingSource booksSource;
         BindingSource gamesSource;
         BindingSource moviesSource;
+        private List<Product> inventoryProducts;
 
         public InventoryControl(BindingSource booksSource, BindingSource gamesSource, BindingSource moviesSource)
         {
@@ -25,6 +26,34 @@ namespace Media_Store
             gamesDataGrid.DataSource = gamesSource;
             this.moviesSource = moviesSource;
             moviesDataGrid.DataSource = moviesSource;
+
+            inventoryProducts = new List<Product>();
+            LoadProducts();
+        }
+
+        private void LoadProducts()
+        {
+            ClearGrids();
+
+            List<Product> csvList = CSVHandler.LoadProducts();
+            inventoryProducts.Clear();
+            inventoryProducts.AddRange(csvList);
+
+            booksSource.DataSource = inventoryProducts.OfType<Book>().ToList();
+            gamesSource.DataSource = inventoryProducts.OfType<Game>().ToList();
+            moviesSource.DataSource = inventoryProducts.OfType<Movie>().ToList();
+
+            booksDataGrid.DataSource = booksSource;
+            gamesDataGrid.DataSource = gamesSource;
+            moviesDataGrid.DataSource = moviesSource;
+        }
+
+
+        private void ClearGrids()
+        {
+            booksDataGrid.DataSource = null;
+            gamesDataGrid.DataSource = null;
+            moviesDataGrid.DataSource = null;
         }
     }
 }

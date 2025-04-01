@@ -8,15 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DVGB07_MediaStore;
+using DVGB07_MediaStore.Dialogs;
 
 namespace Media_Store
 {
     public partial class InventoryControl : UserControl
-    {
-        private static string BOOK = "Book";
-        private static string GAME = "Game";
-        private static string MOVIE = "Movie";
-        
+    {   
         BindingSource booksSource;
         BindingSource gamesSource;
         BindingSource moviesSource;
@@ -96,7 +93,7 @@ namespace Media_Store
 
                 if (addBookForm.ShowDialog() == DialogResult.OK)
                 {
-                    Book newBook = addBookForm.NewBook; // Hämta boken från formuläret
+                    Book newBook = addBookForm.NewBook;
 
                     if (newBook != null)
                     {
@@ -105,7 +102,7 @@ namespace Media_Store
                         if (inventoryManager.AddProduct(newBook))
                         {
                             MessageBox.Show("Book added to inventory");
-                            LoadProducts(); // Uppdatera produktlistan
+                            LoadProducts();
                         }
                         else
                         {
@@ -170,6 +167,52 @@ namespace Media_Store
                     }
                 }
             }
+        }
+
+        private void removeBookButton_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedProduct(booksDataGrid);
+        }
+
+        private void removeGameButton_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedProduct(gamesDataGrid);
+        }
+
+        private void removeMovieButton_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedProduct(moviesDataGrid);
+        }
+
+        private void RemoveSelectedProduct(DataGridView dataGrid)
+        {
+            if (dataGrid == null)
+                return;
+
+            int selectedPID = (int)dataGrid.CurrentRow.Cells["PID"].Value;
+            Product product = inventoryProducts.FirstOrDefault(p => p.PID == selectedPID);
+            if (product != null)
+            {
+                AmountForm dialog = new AmountForm();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    int amount = dialog.Amount;
+                    RemoveAmountOfProduct(product, amount);
+                }
+
+                CSVHandler.SaveProducts(inventoryProducts);
+                LoadProducts();
+            }
+        }
+
+        private void RemoveAmountOfProduct(Product product, int amount)
+        {
+            int currentStock = product.Stock;
+            int newStock = currentStock - amount;
+            product.Stock = newStock;
+
+            if (newStock <= 0)
+                inventoryProducts.Remove(product);
         }
     }
 }

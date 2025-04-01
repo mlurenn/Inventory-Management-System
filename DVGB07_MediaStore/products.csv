@@ -2,14 +2,14 @@ PID,Name,Price,Stock,Author,Genre,Format,Language,Platform,Length
 1,Bello Gallico et Civili,449,25,Julius Caesaar,History,Hardcover,Latin
 2,How to Read a Book,149,14,Mortimer J. Adler,Course literature,Pocket,
 3,Moby Dick,49,11,Herman Melville,Adventure,Pocket,
-4,Great Gatsby,79,5,F. Scott Fitzgerald,Noir,E-book,
+4,Great Gatsby,79,15,F. Scott Fitzgerald,Noir,E-book,
 5,House of Leaves,49,14,Mark Z. Danielewski,Horror,,
 6,Elden Ring,599,23,,Playstation 5
 7,Demon's Souls,499,3,,Playstation 5
 8,Microsoft Flight Simulator,499,31,,PC
 9,Planescape Torment,99,6,,PC
 10,Disco Elysium,399,8,,PC
-11,The Shawshank Redemption,99,15,,,142
+11,The Shawshank Redemption,99,16,,,142
 12,The Godfather,99,4,,,152
 13,The Return of the King,199,27,,Blu-Ray,154
 14,Pulp Fiction,199,17,,Blu-Ray,0

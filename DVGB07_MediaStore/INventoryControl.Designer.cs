@@ -37,9 +37,8 @@
             this.moviesDataGrid = new System.Windows.Forms.DataGridView();
             this.addGameButton = new System.Windows.Forms.Button();
             this.addMovieButton = new System.Windows.Forms.Button();
-            this.removeBookButton = new System.Windows.Forms.Button();
-            this.removeGameButton = new System.Windows.Forms.Button();
-            this.removeMovieButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
+            this.orderProductButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).BeginInit();
@@ -62,12 +61,13 @@
             this.booksDataGrid.ShowCellToolTips = false;
             this.booksDataGrid.ShowEditingIcon = false;
             this.booksDataGrid.ShowRowErrors = false;
-            this.booksDataGrid.Size = new System.Drawing.Size(609, 100);
+            this.booksDataGrid.Size = new System.Drawing.Size(556, 100);
             this.booksDataGrid.TabIndex = 0;
+            this.booksDataGrid.SelectionChanged += new System.EventHandler(this.booksDataGrid_SelectionChanged);
             // 
             // addBookButton
             // 
-            this.addBookButton.Location = new System.Drawing.Point(474, 40);
+            this.addBookButton.Location = new System.Drawing.Point(476, 40);
             this.addBookButton.Name = "addBookButton";
             this.addBookButton.Size = new System.Drawing.Size(65, 20);
             this.addBookButton.TabIndex = 1;
@@ -112,8 +112,9 @@
             this.gamesDataGrid.ShowCellToolTips = false;
             this.gamesDataGrid.ShowEditingIcon = false;
             this.gamesDataGrid.ShowRowErrors = false;
-            this.gamesDataGrid.Size = new System.Drawing.Size(609, 100);
+            this.gamesDataGrid.Size = new System.Drawing.Size(556, 100);
             this.gamesDataGrid.TabIndex = 5;
+            this.gamesDataGrid.SelectionChanged += new System.EventHandler(this.gamesDataGrid_SelectionChanged);
             // 
             // MoviesLabel
             // 
@@ -142,8 +143,9 @@
             this.moviesDataGrid.ShowCellToolTips = false;
             this.moviesDataGrid.ShowEditingIcon = false;
             this.moviesDataGrid.ShowRowErrors = false;
-            this.moviesDataGrid.Size = new System.Drawing.Size(609, 100);
+            this.moviesDataGrid.Size = new System.Drawing.Size(556, 100);
             this.moviesDataGrid.TabIndex = 7;
+            this.moviesDataGrid.SelectionChanged += new System.EventHandler(this.moviesDataGrid_SelectionChanged);
             // 
             // addGameButton
             // 
@@ -165,43 +167,32 @@
             this.addMovieButton.UseVisualStyleBackColor = true;
             this.addMovieButton.Click += new System.EventHandler(this.addMovieButton_Click);
             // 
-            // removeBookButton
+            // removeButton
             // 
-            this.removeBookButton.Location = new System.Drawing.Point(547, 41);
-            this.removeBookButton.Name = "removeBookButton";
-            this.removeBookButton.Size = new System.Drawing.Size(65, 20);
-            this.removeBookButton.TabIndex = 10;
-            this.removeBookButton.Text = "Remove";
-            this.removeBookButton.UseVisualStyleBackColor = true;
-            this.removeBookButton.Click += new System.EventHandler(this.removeBookButton_Click);
+            this.removeButton.Location = new System.Drawing.Point(423, 3);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(118, 23);
+            this.removeButton.TabIndex = 10;
+            this.removeButton.Text = "Remove Selected";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
-            // removeGameButton
+            // orderProductButton
             // 
-            this.removeGameButton.Location = new System.Drawing.Point(547, 179);
-            this.removeGameButton.Name = "removeGameButton";
-            this.removeGameButton.Size = new System.Drawing.Size(65, 20);
-            this.removeGameButton.TabIndex = 11;
-            this.removeGameButton.Text = "Remove";
-            this.removeGameButton.UseVisualStyleBackColor = true;
-            this.removeGameButton.Click += new System.EventHandler(this.removeGameButton_Click);
-            // 
-            // removeMovieButton
-            // 
-            this.removeMovieButton.Location = new System.Drawing.Point(547, 324);
-            this.removeMovieButton.Name = "removeMovieButton";
-            this.removeMovieButton.Size = new System.Drawing.Size(65, 20);
-            this.removeMovieButton.TabIndex = 12;
-            this.removeMovieButton.Text = "Remove";
-            this.removeMovieButton.UseVisualStyleBackColor = true;
-            this.removeMovieButton.Click += new System.EventHandler(this.removeMovieButton_Click);
+            this.orderProductButton.Location = new System.Drawing.Point(299, 3);
+            this.orderProductButton.Name = "orderProductButton";
+            this.orderProductButton.Size = new System.Drawing.Size(118, 23);
+            this.orderProductButton.TabIndex = 11;
+            this.orderProductButton.Text = "Order Selected";
+            this.orderProductButton.UseVisualStyleBackColor = true;
+            this.orderProductButton.Click += new System.EventHandler(this.orderProductButton_Click);
             // 
             // InventoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.removeMovieButton);
-            this.Controls.Add(this.removeGameButton);
-            this.Controls.Add(this.removeBookButton);
+            this.Controls.Add(this.orderProductButton);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addMovieButton);
             this.Controls.Add(this.addGameButton);
             this.Controls.Add(this.moviesDataGrid);
@@ -212,7 +203,7 @@
             this.Controls.Add(this.addBookButton);
             this.Controls.Add(this.booksDataGrid);
             this.Name = "InventoryControl";
-            this.Size = new System.Drawing.Size(615, 449);
+            this.Size = new System.Drawing.Size(562, 449);
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).EndInit();
@@ -232,8 +223,7 @@
         private System.Windows.Forms.DataGridView moviesDataGrid;
         private System.Windows.Forms.Button addGameButton;
         private System.Windows.Forms.Button addMovieButton;
-        private System.Windows.Forms.Button removeBookButton;
-        private System.Windows.Forms.Button removeGameButton;
-        private System.Windows.Forms.Button removeMovieButton;
+        private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.Button orderProductButton;
     }
 }

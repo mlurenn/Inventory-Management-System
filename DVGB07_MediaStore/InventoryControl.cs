@@ -169,21 +169,22 @@ namespace Media_Store
             }
         }
 
-        private void removeBookButton_Click(object sender, EventArgs e)
+        private DataGridView GetDataGridView()
         {
-            RemoveSelectedProduct(booksDataGrid);
+            DataGridView selectedGrid = null;
+            if (booksDataGrid.SelectedRows.Count > 0)
+                selectedGrid = booksDataGrid;
+            if (gamesDataGrid.SelectedRows.Count > 0)
+                selectedGrid = gamesDataGrid;
+            if (moviesDataGrid.SelectedRows.Count > 0)
+                selectedGrid = moviesDataGrid;
+            return selectedGrid;
         }
 
-        private void removeGameButton_Click(object sender, EventArgs e)
+        private void removeButton_Click(object sender, EventArgs e)
         {
-            RemoveSelectedProduct(gamesDataGrid);
+            RemoveSelectedProduct(GetDataGridView());
         }
-
-        private void removeMovieButton_Click(object sender, EventArgs e)
-        {
-            RemoveSelectedProduct(moviesDataGrid);
-        }
-
         private void RemoveSelectedProduct(DataGridView dataGrid)
         {
             if (dataGrid == null)
@@ -213,6 +214,68 @@ namespace Media_Store
 
             if (newStock <= 0)
                 inventoryProducts.Remove(product);
+        }
+
+        private void booksDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            var s = (DataGridView)sender;
+            if (s.SelectedRows.Count > 0)
+            {
+                var otherDataGrids = this.Controls.OfType<DataGridView>().Except(new[] { s });
+                foreach (var dgv in otherDataGrids)
+                {
+                    dgv.ClearSelection();
+                }
+            }
+        }
+
+        private void gamesDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            var s = (DataGridView)sender;
+            if (s.SelectedRows.Count > 0)
+            {
+                var otherDataGrids = this.Controls.OfType<DataGridView>().Except(new[] { s });
+                foreach (var dgv in otherDataGrids)
+                {
+                    dgv.ClearSelection();
+                }
+            }
+        }
+
+        private void moviesDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            var s = (DataGridView)sender;
+            if (s.SelectedRows.Count > 0)
+            {
+                var otherDataGrids = this.Controls.OfType<DataGridView>().Except(new[] { s });
+                foreach (var dgv in otherDataGrids)
+                {
+                    dgv.ClearSelection();
+                }
+            }
+        }
+
+        private void orderProductButton_Click(object sender, EventArgs e)
+        {
+            OrderProduct();
+        }
+
+        private void OrderProduct()
+        {
+            DataGridView selectedDataGrid = GetDataGridView();
+            
+            int selectedPID = (int)selectedDataGrid.CurrentRow.Cells["PID"].Value;
+            Product product = inventoryProducts.FirstOrDefault(p => p.PID == selectedPID);
+            if (product != null)
+            {
+                AmountForm dialog = new AmountForm();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                    product.Stock += dialog.Amount;
+
+                CSVHandler.SaveProducts(inventoryProducts);
+                LoadProducts();
+            }
+
         }
     }
 }

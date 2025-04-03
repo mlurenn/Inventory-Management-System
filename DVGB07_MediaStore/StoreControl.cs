@@ -38,6 +38,10 @@ namespace DVGB07_MediaStore
 
             this.cartSource = cartSource;
             cartDataGrid.DataSource = cartSource;
+            if (cartDataGrid.Columns["Stock"] != null)
+            {
+                cartDataGrid.Columns["Stock"].HeaderText = "Quantity";
+            }
 
             Debug.WriteLine(cartSource == null ? "cartSource är NULL!" : "cartSource är OK!");
 
@@ -153,13 +157,18 @@ namespace DVGB07_MediaStore
             int selectedPID = (int)selectedGrid.CurrentRow.Cells["PID"].Value;
             Product product = inventoryProducts.FirstOrDefault(p => p.PID == selectedPID);
 
-            if (product != null && product.Stock > 0)
+            if (product != null)
             {
-                cart.AddToCart(product);
-                cartSource.DataSource = cart.GetCart();
-                cartSource.ResetBindings(false);
+                if (product.Stock > cart.GetQuantityInCart(selectedPID))
+                {
+                    cart.AddToCart(product);
+                    cartSource.DataSource = cart.GetCart();
+                    cartSource.ResetBindings(false);
+                    UpdatePrice();
+                }
             }
         }
+
 
         private void removeFromCartButton_Click(object sender, EventArgs e)
         {
@@ -169,33 +178,36 @@ namespace DVGB07_MediaStore
             int selectedPID = (int)cartDataGrid.CurrentRow.Cells["PID"].Value;
             cart.RemoveFromCart(selectedPID);
 
-            cartSource.DataSource = null;
             cartSource.DataSource = cart.GetCart();
+            cartSource.ResetBindings(false);
+            UpdatePrice();
         }
 
         private void buyButton_Click(object sender, EventArgs e)
         {
-            foreach (Product product in cart.GetCart())
-                ReduceStock(product);
+            foreach (var cartItem in cart.GetCart())
+            {
+                Product inventoryProduct = inventoryProducts.FirstOrDefault(p => p.PID == cartItem.PID);
+                if (inventoryProduct != null)
+                {
+                    inventoryProduct.Stock -= cartItem.Stock;
+                }
+            }
+
             CSVHandler.SaveProducts(inventoryProducts);
             LoadProducts();
 
             cart.EmptyCart();
             cartSource.DataSource = cart.GetCart();
             cartSource.ResetBindings(false);
-
-            inventoryProducts = CSVHandler.LoadProducts();
+            UpdatePrice();
             MessageBox.Show("Purchase complete!");
         }
-
-        private void ReduceStock(Product product)
+        
+        private void UpdatePrice()
         {
-            int currentStock = product.Stock;
-            int newStock = currentStock - 1;
-            if (newStock < 0)
-                newStock = 0;
-            product.Stock = newStock;
+            int totalPrice = cart.GetTotalPrice();
+            priceLabel.Text = $"Total Price: {totalPrice.ToString()}kr";
         }
-
     }
 }

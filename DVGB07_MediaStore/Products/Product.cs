@@ -21,5 +21,10 @@ namespace Media_Store
             Price = price;
             Stock = stock;
         }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }

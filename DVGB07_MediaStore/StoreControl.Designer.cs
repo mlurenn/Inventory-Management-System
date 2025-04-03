@@ -35,10 +35,11 @@
             this.BooksLabel = new System.Windows.Forms.Label();
             this.booksDataGrid = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.cartDataGrid = new System.Windows.Forms.DataGridView();
             this.addToCartButton = new System.Windows.Forms.Button();
-            this.removeFromCartButton = new System.Windows.Forms.Button();
             this.buyButton = new System.Windows.Forms.Button();
+            this.removeFromCartButton = new System.Windows.Forms.Button();
+            this.cartDataGrid = new System.Windows.Forms.DataGridView();
+            this.priceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).BeginInit();
@@ -161,12 +162,43 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.priceLabel);
             this.splitContainer1.Panel2.Controls.Add(this.buyButton);
             this.splitContainer1.Panel2.Controls.Add(this.removeFromCartButton);
             this.splitContainer1.Panel2.Controls.Add(this.cartDataGrid);
             this.splitContainer1.Size = new System.Drawing.Size(943, 514);
             this.splitContainer1.SplitterDistance = 696;
             this.splitContainer1.TabIndex = 19;
+            // 
+            // addToCartButton
+            // 
+            this.addToCartButton.Location = new System.Drawing.Point(318, 18);
+            this.addToCartButton.Name = "addToCartButton";
+            this.addToCartButton.Size = new System.Drawing.Size(75, 23);
+            this.addToCartButton.TabIndex = 17;
+            this.addToCartButton.Text = "Add to cart";
+            this.addToCartButton.UseVisualStyleBackColor = true;
+            this.addToCartButton.Click += new System.EventHandler(this.addToCartButton_Click);
+            // 
+            // buyButton
+            // 
+            this.buyButton.Location = new System.Drawing.Point(122, 488);
+            this.buyButton.Name = "buyButton";
+            this.buyButton.Size = new System.Drawing.Size(118, 23);
+            this.buyButton.TabIndex = 18;
+            this.buyButton.Text = "Complete Purchase";
+            this.buyButton.UseVisualStyleBackColor = true;
+            this.buyButton.Click += new System.EventHandler(this.buyButton_Click);
+            // 
+            // removeFromCartButton
+            // 
+            this.removeFromCartButton.Location = new System.Drawing.Point(3, 488);
+            this.removeFromCartButton.Name = "removeFromCartButton";
+            this.removeFromCartButton.Size = new System.Drawing.Size(118, 23);
+            this.removeFromCartButton.TabIndex = 18;
+            this.removeFromCartButton.Text = "Remove Product";
+            this.removeFromCartButton.UseVisualStyleBackColor = true;
+            this.removeFromCartButton.Click += new System.EventHandler(this.removeFromCartButton_Click);
             // 
             // cartDataGrid
             // 
@@ -189,35 +221,15 @@
             this.cartDataGrid.TabIndex = 19;
             this.cartDataGrid.SelectionChanged += new System.EventHandler(this.cartDataGrid_SelectionChanged);
             // 
-            // addToCartButton
+            // priceLabel
             // 
-            this.addToCartButton.Location = new System.Drawing.Point(318, 18);
-            this.addToCartButton.Name = "addToCartButton";
-            this.addToCartButton.Size = new System.Drawing.Size(75, 23);
-            this.addToCartButton.TabIndex = 17;
-            this.addToCartButton.Text = "Add to cart";
-            this.addToCartButton.UseVisualStyleBackColor = true;
-            this.addToCartButton.Click += new System.EventHandler(this.addToCartButton_Click);
-            // 
-            // removeFromCartButton
-            // 
-            this.removeFromCartButton.Location = new System.Drawing.Point(3, 480);
-            this.removeFromCartButton.Name = "removeFromCartButton";
-            this.removeFromCartButton.Size = new System.Drawing.Size(118, 23);
-            this.removeFromCartButton.TabIndex = 18;
-            this.removeFromCartButton.Text = "Remove Product";
-            this.removeFromCartButton.UseVisualStyleBackColor = true;
-            this.removeFromCartButton.Click += new System.EventHandler(this.removeFromCartButton_Click);
-            // 
-            // buyButton
-            // 
-            this.buyButton.Location = new System.Drawing.Point(122, 480);
-            this.buyButton.Name = "buyButton";
-            this.buyButton.Size = new System.Drawing.Size(118, 23);
-            this.buyButton.TabIndex = 18;
-            this.buyButton.Text = "Complete Purchase";
-            this.buyButton.UseVisualStyleBackColor = true;
-            this.buyButton.Click += new System.EventHandler(this.buyButton_Click);
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceLabel.Location = new System.Drawing.Point(4, 468);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(87, 20);
+            this.priceLabel.TabIndex = 20;
+            this.priceLabel.Text = "Total Price:";
             // 
             // StoreControl
             // 
@@ -225,13 +237,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "StoreControl";
-            this.Size = new System.Drawing.Size(943, 514);
+            this.Size = new System.Drawing.Size(943, 546);
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cartDataGrid)).EndInit();
@@ -251,5 +264,6 @@
         private System.Windows.Forms.Button addToCartButton;
         private System.Windows.Forms.Button buyButton;
         private System.Windows.Forms.Button removeFromCartButton;
+        private System.Windows.Forms.Label priceLabel;
     }
 }

@@ -9,22 +9,71 @@ namespace DVGB07_MediaStore
 {
     internal class Cart
     {
-        public List<Product> Items { get; private set; }
+        private Dictionary<int, (Product product, int quantity)> cartItems;
 
         public Cart()
         {
-            Items = new List<Product>();
+            cartItems = new Dictionary<int, (Product, int)>();
         }
 
-        public void RemoveFromCart(int PID)
+        public void AddToCart(Product product)
         {
-            Product product = Items.FirstOrDefault(p => p.PID == PID);
-            if (product != null)
-                Items.Remove(product);
+            if (cartItems.ContainsKey(product.PID))
+            {
+                cartItems[product.PID] = (product, cartItems[product.PID].quantity + 1);
+            }
+            else
+            {
+                cartItems[product.PID] = (product, 1);
+            }
         }
-        public void AddToCart(Product product) { Items.Add(product); }
-        public void EmptyCart() { Items.Clear(); }
-        public int GetTotalPrice() {  return Items.Sum(p => p.Price); }
-        public List<Product> GetCart() {  return Items; }
+
+        public void RemoveFromCart(int pid)
+        {
+            if (cartItems.ContainsKey(pid))
+            {
+                if (cartItems[pid].quantity > 1)
+                {
+                    cartItems[pid] = (cartItems[pid].product, cartItems[pid].quantity - 1);
+                }
+                else
+                {
+                    cartItems.Remove(pid);
+                }
+            }
+        }
+
+        public List<Product> GetCart()
+        {
+            return cartItems.Values.Select(item =>
+            {
+                var clonedProduct = (Product)item.product.Clone();
+                clonedProduct.Stock = item.quantity;
+                return clonedProduct;
+            }).ToList();
+        }
+
+        public void EmptyCart()
+        {
+            cartItems.Clear();
+        }
+
+        public int GetQuantityInCart(int PID)
+        {
+            if (cartItems.ContainsKey(PID))
+                return cartItems[PID].quantity;
+            else return 0;
+        }
+
+        public int GetTotalPrice()
+        {
+            int totalPrice = 0;
+            foreach (var item in cartItems.Values)
+            {
+                totalPrice += item.product.Price * item.quantity;
+            }
+            return totalPrice;
+        }
     }
+
 }

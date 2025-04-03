@@ -33,7 +33,7 @@ namespace Media_Store
             LoadProducts();
         }
 
-        private void LoadProducts()
+        public void LoadProducts()
         {
             ClearGrids();
 
@@ -218,31 +218,20 @@ namespace Media_Store
 
         private void booksDataGrid_SelectionChanged(object sender, EventArgs e)
         {
-            var s = (DataGridView)sender;
-            if (s.SelectedRows.Count > 0)
-            {
-                var otherDataGrids = this.Controls.OfType<DataGridView>().Except(new[] { s });
-                foreach (var dgv in otherDataGrids)
-                {
-                    dgv.ClearSelection();
-                }
-            }
+            DeselectOtherGrids(sender);
         }
 
         private void gamesDataGrid_SelectionChanged(object sender, EventArgs e)
         {
-            var s = (DataGridView)sender;
-            if (s.SelectedRows.Count > 0)
-            {
-                var otherDataGrids = this.Controls.OfType<DataGridView>().Except(new[] { s });
-                foreach (var dgv in otherDataGrids)
-                {
-                    dgv.ClearSelection();
-                }
-            }
+            DeselectOtherGrids(sender);
         }
 
         private void moviesDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            DeselectOtherGrids(sender);
+        }
+
+        private void DeselectOtherGrids(object sender)
         {
             var s = (DataGridView)sender;
             if (s.SelectedRows.Count > 0)

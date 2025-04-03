@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DVGB07_MediaStore;
 
 namespace Media_Store
 {
@@ -18,6 +19,8 @@ namespace Media_Store
         BindingSource gamesSource;
         BindingList<Movie> movies;
         BindingSource moviesSource;
+        BindingList<Product> cartItems;
+        BindingSource cartSource;
 
         public MainForm()
         {
@@ -29,6 +32,8 @@ namespace Media_Store
             gamesSource = new BindingSource(games, null);
             movies = new BindingList<Movie>();
             moviesSource = new BindingSource(movies, null);
+            cartItems = new BindingList<Product>();
+            cartSource = new BindingSource(cartItems, null);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -36,6 +41,10 @@ namespace Media_Store
             InventoryControl inventoryControl = new InventoryControl(booksSource, gamesSource, moviesSource);
             inventoryControl.Dock = DockStyle.Fill;
             InventoryTab.Controls.Add(inventoryControl);
+
+            StoreControl storeControl = new StoreControl(booksSource, gamesSource, moviesSource, cartSource);
+            storeControl.Dock = DockStyle.Fill;
+            StoreTab.Controls.Add(storeControl);
         }
     }
 }

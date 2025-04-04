@@ -42,7 +42,9 @@ namespace DVGB07_MediaStore
                 int length;
                 int pid = CSVHandler.GeneratePID();
                 int price = int.Parse(priceText.Text);
+                if (!CheckPositive(price)) return;
                 int stock = int.Parse(stockText.Text);
+                if (!CheckPositive(stock)) return;
                 string name = nameText.Text;
                 string genre = genreText.Text;
                 string format = formatText.Text;
@@ -59,6 +61,15 @@ namespace DVGB07_MediaStore
             {
                 MessageBox.Show("Incorrect input: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private bool CheckPositive(int value)
+        {
+            if (value < 0)
+            {
+                MessageBox.Show("Numbers cannot be negative.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
     }
 }

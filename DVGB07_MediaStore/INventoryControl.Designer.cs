@@ -170,7 +170,7 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(423, 3);
+            this.removeButton.Location = new System.Drawing.Point(441, 3);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(118, 23);
             this.removeButton.TabIndex = 10;
@@ -180,7 +180,7 @@
             // 
             // orderProductButton
             // 
-            this.orderProductButton.Location = new System.Drawing.Point(175, 3);
+            this.orderProductButton.Location = new System.Drawing.Point(193, 3);
             this.orderProductButton.Name = "orderProductButton";
             this.orderProductButton.Size = new System.Drawing.Size(118, 23);
             this.orderProductButton.TabIndex = 11;
@@ -190,7 +190,7 @@
             // 
             // reduceStockButton
             // 
-            this.reduceStockButton.Location = new System.Drawing.Point(299, 3);
+            this.reduceStockButton.Location = new System.Drawing.Point(317, 3);
             this.reduceStockButton.Name = "reduceStockButton";
             this.reduceStockButton.Size = new System.Drawing.Size(118, 23);
             this.reduceStockButton.TabIndex = 12;

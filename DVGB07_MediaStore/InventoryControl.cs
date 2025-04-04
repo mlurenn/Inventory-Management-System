@@ -187,12 +187,16 @@ namespace Media_Store
                 selectedGrid = moviesDataGrid;
             return selectedGrid;
         }
+        private void reduceStockButton_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedProduct(GetDataGridView(), true);
+        }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            RemoveSelectedProduct(GetDataGridView());
+            RemoveSelectedProduct(GetDataGridView(), false);
         }
-        private void RemoveSelectedProduct(DataGridView dataGrid)
+        private void RemoveSelectedProduct(DataGridView dataGrid, bool reduce)
         {
             if (dataGrid == null)
                 return;
@@ -201,11 +205,33 @@ namespace Media_Store
             Product product = inventoryProducts.FirstOrDefault(p => p.PID == selectedPID);
             if (product != null)
             {
-                AmountForm dialog = new AmountForm();
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (reduce)
                 {
-                    int amount = dialog.Amount;
-                    RemoveAmountOfProduct(product, amount);
+                    AmountForm dialog = new AmountForm();
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        int amount = dialog.Amount;
+                        RemoveAmountOfProduct(product, amount);
+                    }
+                }
+                else
+                {
+                    if (product.Stock != 0)
+                    {
+                        DialogResult dialog = MessageBox.Show(
+                            "Are you sure you want to remove this product?",
+                            "Confirm Removal",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+                        if (dialog == DialogResult.Yes)
+                        {
+                            inventoryProducts.Remove(product);
+                        }
+                    }
+                    else
+                    {
+                        inventoryProducts.Remove(product);
+                    }
                 }
 
                 CSVHandler.SaveProducts(inventoryProducts);
@@ -261,5 +287,6 @@ namespace Media_Store
             }
 
         }
+
     }
 }

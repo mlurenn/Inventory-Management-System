@@ -39,6 +39,7 @@
             this.addMovieButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.orderProductButton = new System.Windows.Forms.Button();
+            this.reduceStockButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).BeginInit();
@@ -179,7 +180,7 @@
             // 
             // orderProductButton
             // 
-            this.orderProductButton.Location = new System.Drawing.Point(299, 3);
+            this.orderProductButton.Location = new System.Drawing.Point(175, 3);
             this.orderProductButton.Name = "orderProductButton";
             this.orderProductButton.Size = new System.Drawing.Size(118, 23);
             this.orderProductButton.TabIndex = 11;
@@ -187,10 +188,21 @@
             this.orderProductButton.UseVisualStyleBackColor = true;
             this.orderProductButton.Click += new System.EventHandler(this.orderProductButton_Click);
             // 
+            // reduceStockButton
+            // 
+            this.reduceStockButton.Location = new System.Drawing.Point(299, 3);
+            this.reduceStockButton.Name = "reduceStockButton";
+            this.reduceStockButton.Size = new System.Drawing.Size(118, 23);
+            this.reduceStockButton.TabIndex = 12;
+            this.reduceStockButton.Text = "Reduce Stock";
+            this.reduceStockButton.UseVisualStyleBackColor = true;
+            this.reduceStockButton.Click += new System.EventHandler(this.reduceStockButton_Click);
+            // 
             // InventoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.reduceStockButton);
             this.Controls.Add(this.orderProductButton);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addMovieButton);
@@ -225,5 +237,6 @@
         private System.Windows.Forms.Button addMovieButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button orderProductButton;
+        private System.Windows.Forms.Button reduceStockButton;
     }
 }

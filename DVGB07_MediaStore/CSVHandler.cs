@@ -63,10 +63,8 @@ namespace Media_Store
                     products.Add(new Movie(pid, name, price, stock, genre, format, length));
                 }
             }
-
             return products;
         }
-
 
         public static void SaveProducts(List<Product> products)
         {
@@ -118,6 +116,5 @@ namespace Media_Store
             List<Product> products = LoadProducts();
             return products.Count > 0 ? products.Max(p => p.PID) + 1 : 1;
         }
-
     }
 }

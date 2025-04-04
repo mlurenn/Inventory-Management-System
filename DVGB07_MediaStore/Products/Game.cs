@@ -16,10 +16,5 @@ namespace Media_Store
         {
             Platform = platform;
         }
-
-        public override string ToString()
-        {
-            return $"{PID} - {Name} ({Genre}, {Platform}) - {Price} SEK, {Stock} in stock";
-        }
     }
 }

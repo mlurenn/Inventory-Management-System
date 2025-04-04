@@ -21,10 +21,5 @@ namespace Media_Store
             Format = format;
             Language = language;
         }
-
-        public override string ToString()
-        {
-            return $"{PID} - {Name} ({Author}, {Genre}, {Format}, {Language}) - {Price} SEK, {Stock} in stock";
-        }
     }
 }

@@ -18,10 +18,5 @@ namespace Media_Store
             Format = format;
             Length = length;
         }
-
-        public override string ToString()
-        {
-            return $"{PID} - {Name} ({Genre}, {Format}) - {Price} SEK, {Stock} in stock, {Length} mins";
-        }
     }
 }

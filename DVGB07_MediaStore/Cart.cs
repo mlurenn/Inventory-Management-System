@@ -67,12 +67,12 @@ namespace DVGB07_MediaStore
 
         public int GetTotalPrice()
         {
-            int totalPrice = 0;
+            int total = 0;
             foreach (var item in cartItems.Values)
             {
-                totalPrice += item.product.Price * item.quantity;
+                total += item.product.Price * item.quantity;
             }
-            return totalPrice;
+            return total;
         }
     }
 

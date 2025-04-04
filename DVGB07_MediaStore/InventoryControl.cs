@@ -251,7 +251,6 @@ namespace Media_Store
             DeselectOtherGrids(sender);
         }
 
-
         private void DeselectOtherGrids(object sender)
         {
             var s = (DataGridView)sender;
@@ -285,8 +284,6 @@ namespace Media_Store
                 CSVHandler.SaveProducts(inventoryProducts);
                 LoadProducts();
             }
-
         }
-
     }
 }

@@ -35,7 +35,7 @@ namespace DVGB07_MediaStore.Dialogs
             }
             else
             {
-                MessageBox.Show("Amount not valid.");
+                MessageBox.Show("Amount is not valid.");
             }
         }
     }

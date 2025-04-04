@@ -97,9 +97,7 @@ namespace Media_Store
 
                     if (newBook != null)
                     {
-                        InventoryManager inventoryManager = new InventoryManager();
-
-                        if (inventoryManager.AddProduct(newBook))
+                        if (AddProduct(newBook))
                         {
                             MessageBox.Show("Book added to inventory");
                             LoadProducts();
@@ -125,9 +123,7 @@ namespace Media_Store
 
                     if (newMovie != null)
                     {
-                        InventoryManager inventoryManager = new InventoryManager();
-
-                        if (inventoryManager.AddProduct(newMovie))
+                        if (AddProduct(newMovie))
                         {
                             MessageBox.Show("Movie added to inventory");
                             LoadProducts();
@@ -153,9 +149,7 @@ namespace Media_Store
 
                     if (newGame != null)
                     {
-                        InventoryManager inventoryManager = new InventoryManager();
-
-                        if (inventoryManager.AddProduct(newGame))
+                        if (AddProduct(newGame))
                         {
                             MessageBox.Show("Game added to inventory");
                             LoadProducts();
@@ -167,6 +161,19 @@ namespace Media_Store
                     }
                 }
             }
+        }
+
+        private bool AddProduct(Product product)
+        {
+            if (inventoryProducts.Any(p => p.PID == product.PID))
+            {
+                Console.WriteLine("Ett produkt-ID med samma nummer finns redan.");
+                return false;
+            }
+            inventoryProducts.Add(product);
+            CSVHandler.SaveProducts(inventoryProducts);
+            Console.WriteLine($"Produkt {product.Name} lagd till i lager.");
+            return true;
         }
 
         private DataGridView GetDataGridView()

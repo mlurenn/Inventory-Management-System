@@ -208,12 +208,9 @@ namespace Media_Store
 
         private void RemoveAmountOfProduct(Product product, int amount)
         {
-            int currentStock = product.Stock;
-            int newStock = currentStock - amount;
-            product.Stock = newStock;
-
-            if (newStock <= 0)
-                inventoryProducts.Remove(product);
+            product.Stock = product.Stock - amount;
+            if (product.Stock < 0)
+                product.Stock = 0;
         }
 
         private void booksDataGrid_SelectionChanged(object sender, EventArgs e)

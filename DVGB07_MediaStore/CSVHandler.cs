@@ -8,7 +8,7 @@ namespace Media_Store
 {
     internal static class CSVHandler
     {
-        private static string filePath = @"C:\Users\melke\source\repos\DVGB07_MediaStore\DVGB07_MediaStore\products.csv";
+        private static string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "products.csv");
 
         public static List<Product> LoadProducts()
         {

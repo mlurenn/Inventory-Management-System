@@ -36,10 +36,10 @@
             this.booksDataGrid = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.addToCartButton = new System.Windows.Forms.Button();
+            this.priceLabel = new System.Windows.Forms.Label();
             this.buyButton = new System.Windows.Forms.Button();
             this.removeFromCartButton = new System.Windows.Forms.Button();
             this.cartDataGrid = new System.Windows.Forms.DataGridView();
-            this.priceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).BeginInit();
@@ -70,7 +70,7 @@
             this.moviesDataGrid.ShowRowErrors = false;
             this.moviesDataGrid.Size = new System.Drawing.Size(683, 130);
             this.moviesDataGrid.TabIndex = 16;
-            this.moviesDataGrid.SelectionChanged += new System.EventHandler(this.moviesDataGrid_SelectionChanged);
+            this.moviesDataGrid.SelectionChanged += new System.EventHandler(this.dataGrid_SelectionChanged);
             // 
             // MoviesLabel
             // 
@@ -102,7 +102,7 @@
             this.gamesDataGrid.ShowRowErrors = false;
             this.gamesDataGrid.Size = new System.Drawing.Size(683, 130);
             this.gamesDataGrid.TabIndex = 14;
-            this.gamesDataGrid.SelectionChanged += new System.EventHandler(this.gamesDataGrid_SelectionChanged);
+            this.gamesDataGrid.SelectionChanged += new System.EventHandler(this.dataGrid_SelectionChanged);
             // 
             // GamesLabel
             // 
@@ -143,7 +143,7 @@
             this.booksDataGrid.ShowRowErrors = false;
             this.booksDataGrid.Size = new System.Drawing.Size(690, 130);
             this.booksDataGrid.TabIndex = 10;
-            this.booksDataGrid.SelectionChanged += new System.EventHandler(this.booksDataGrid_SelectionChanged);
+            this.booksDataGrid.SelectionChanged += new System.EventHandler(this.dataGrid_SelectionChanged);
             // 
             // splitContainer1
             // 
@@ -179,6 +179,16 @@
             this.addToCartButton.Text = "Add to cart";
             this.addToCartButton.UseVisualStyleBackColor = true;
             this.addToCartButton.Click += new System.EventHandler(this.addToCartButton_Click);
+            // 
+            // priceLabel
+            // 
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceLabel.Location = new System.Drawing.Point(4, 468);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(87, 20);
+            this.priceLabel.TabIndex = 20;
+            this.priceLabel.Text = "Total Price:";
             // 
             // buyButton
             // 
@@ -219,17 +229,7 @@
             this.cartDataGrid.ShowRowErrors = false;
             this.cartDataGrid.Size = new System.Drawing.Size(237, 458);
             this.cartDataGrid.TabIndex = 19;
-            this.cartDataGrid.SelectionChanged += new System.EventHandler(this.cartDataGrid_SelectionChanged);
-            // 
-            // priceLabel
-            // 
-            this.priceLabel.AutoSize = true;
-            this.priceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceLabel.Location = new System.Drawing.Point(4, 468);
-            this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(87, 20);
-            this.priceLabel.TabIndex = 20;
-            this.priceLabel.Text = "Total Price:";
+            this.cartDataGrid.SelectionChanged += new System.EventHandler(this.dataGrid_SelectionChanged);
             // 
             // StoreControl
             // 

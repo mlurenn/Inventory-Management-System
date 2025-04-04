@@ -63,7 +63,7 @@
             this.booksDataGrid.ShowRowErrors = false;
             this.booksDataGrid.Size = new System.Drawing.Size(556, 100);
             this.booksDataGrid.TabIndex = 0;
-            this.booksDataGrid.SelectionChanged += new System.EventHandler(this.booksDataGrid_SelectionChanged);
+            this.booksDataGrid.SelectionChanged += new System.EventHandler(this.dataGrid_SelectionChanged);
             // 
             // addBookButton
             // 
@@ -114,7 +114,7 @@
             this.gamesDataGrid.ShowRowErrors = false;
             this.gamesDataGrid.Size = new System.Drawing.Size(556, 100);
             this.gamesDataGrid.TabIndex = 5;
-            this.gamesDataGrid.SelectionChanged += new System.EventHandler(this.gamesDataGrid_SelectionChanged);
+            this.gamesDataGrid.SelectionChanged += new System.EventHandler(this.dataGrid_SelectionChanged);
             // 
             // MoviesLabel
             // 
@@ -145,7 +145,7 @@
             this.moviesDataGrid.ShowRowErrors = false;
             this.moviesDataGrid.Size = new System.Drawing.Size(556, 100);
             this.moviesDataGrid.TabIndex = 7;
-            this.moviesDataGrid.SelectionChanged += new System.EventHandler(this.moviesDataGrid_SelectionChanged);
+            this.moviesDataGrid.SelectionChanged += new System.EventHandler(this.dataGrid_SelectionChanged);
             // 
             // addGameButton
             // 

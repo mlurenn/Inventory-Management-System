@@ -43,8 +43,6 @@ namespace DVGB07_MediaStore
                 cartDataGrid.Columns["Stock"].HeaderText = "Quantity";
             }
 
-            Debug.WriteLine(cartSource == null ? "cartSource är NULL!" : "cartSource är OK!");
-
             cart = new Cart();
             inventoryProducts = new List<Product>();
             LoadProducts();
@@ -114,24 +112,11 @@ namespace DVGB07_MediaStore
             return selectedGrid;
         }
 
-        private void booksDataGrid_SelectionChanged(object sender, EventArgs e)
+        private void dataGrid_SelectionChanged(object sender, EventArgs e)
         {
             DeselectOtherGrids(sender);
         }
 
-        private void gamesDataGrid_SelectionChanged(object sender, EventArgs e)
-        {
-            DeselectOtherGrids(sender);
-        }
-
-        private void moviesDataGrid_SelectionChanged(object sender, EventArgs e)
-        {
-            DeselectOtherGrids(sender);
-        }
-        private void cartDataGrid_SelectionChanged(object sender, EventArgs e)
-        {
-            DeselectOtherGrids(sender);
-        }
 
         private void DeselectOtherGrids(object sender)
         {

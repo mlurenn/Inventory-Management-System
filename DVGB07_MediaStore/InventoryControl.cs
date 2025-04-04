@@ -220,20 +220,11 @@ namespace Media_Store
                 product.Stock = 0;
         }
 
-        private void booksDataGrid_SelectionChanged(object sender, EventArgs e)
+        private void dataGrid_SelectionChanged(object sender, EventArgs e)
         {
             DeselectOtherGrids(sender);
         }
 
-        private void gamesDataGrid_SelectionChanged(object sender, EventArgs e)
-        {
-            DeselectOtherGrids(sender);
-        }
-
-        private void moviesDataGrid_SelectionChanged(object sender, EventArgs e)
-        {
-            DeselectOtherGrids(sender);
-        }
 
         private void DeselectOtherGrids(object sender)
         {

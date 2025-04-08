@@ -126,6 +126,7 @@
     <EmbeddedResource Include="StoreControl.resx">
       <DependentUpon>StoreControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

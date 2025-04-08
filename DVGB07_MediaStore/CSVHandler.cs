@@ -111,7 +111,7 @@ namespace Media_Store
             }
         }
 
-        internal static int GeneratePID()
+        public static int GeneratePID()
         {
             List<Product> products = LoadProducts();
             return products.Count > 0 ? products.Max(p => p.PID) + 1 : 1;

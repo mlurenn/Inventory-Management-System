@@ -237,7 +237,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "StoreControl";
-            this.Size = new System.Drawing.Size(943, 546);
+            this.Size = new System.Drawing.Size(992, 559);
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).EndInit();

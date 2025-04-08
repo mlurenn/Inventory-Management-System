@@ -42,7 +42,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 450);
+            this.tabControl1.Size = new System.Drawing.Size(877, 516);
             this.tabControl1.TabIndex = 0;
             // 
             // InventoryTab
@@ -50,7 +50,7 @@
             this.InventoryTab.Location = new System.Drawing.Point(4, 22);
             this.InventoryTab.Name = "InventoryTab";
             this.InventoryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.InventoryTab.Size = new System.Drawing.Size(792, 424);
+            this.InventoryTab.Size = new System.Drawing.Size(869, 490);
             this.InventoryTab.TabIndex = 0;
             this.InventoryTab.Text = "Inventory";
             this.InventoryTab.UseVisualStyleBackColor = true;
@@ -69,7 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(877, 516);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
             this.Text = "Media Store";

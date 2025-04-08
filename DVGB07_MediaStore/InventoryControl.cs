@@ -198,7 +198,7 @@ namespace Media_Store
         }
         private void RemoveSelectedProduct(DataGridView dataGrid, bool reduce)
         {
-            if (dataGrid == null)
+            if (dataGrid == null || dataGrid.CurrentRow == null)
                 return;
 
             int selectedPID = (int)dataGrid.CurrentRow.Cells["PID"].Value;

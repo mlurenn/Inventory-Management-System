@@ -1,12 +1,31 @@
-Laboration - Inventory management system:
-This lab focuses on creating a online Media Store. The system should have two seperate views, one for customers and one for employees.
+# 🧾 Lab – Inventory Management System
 
-Features:
-Add new products.
-Remove products.
-Add delivery of products from wholesaler (updates the quantity in stock).
-Ability to sell products through a shopping cart.
-Controls, such as preventing selling products that are not in stock.
+This project is a lab assignment focused on building an online media store (e.g., books, movies, games). The system features two separate interfaces:
 
-Laboration V2
-A second version of the laboration implements the feature to sync the inventory with a central storage unit through the following API: https://hex.cse.kau.se/~jonavest/csharp-api/
+- 🛍️ **Customer View** – for browsing, adding to cart, and purchasing products.
+- 🛠️ **Employee View** – for managing inventory and updating product information.
+
+## 📦 Features
+
+- ➕ Add new products to inventory.
+- ❌ Remove products from inventory.
+- 🚚 Register deliveries from wholesalers (updates stock quantity).
+- 🛒 Sell products through a shopping cart system.
+- ⚠️ Control mechanisms, including:
+  - Preventing the sale of out-of-stock products.
+
+## 🔄 Lab V2 – Central Inventory Synchronization
+
+The second version of the lab introduces a feature to synchronize the inventory with a central storage system via a REST API.
+
+- 🌐 API Documentation: [https://hex.cse.kau.se/~jonavest/csharp-api/](https://hex.cse.kau.se/~jonavest/csharp-api/)
+
+## 🛠️ Technologies
+
+- 👨‍💻 Language: **C#**
+- 💻 Framework: **.NET / Windows Forms**
+- 📁 Storage: **CSV files**
+
+## 📌 Purpose
+
+To learn the basics of inventory management, user interfaces, and external API integration in a business system.

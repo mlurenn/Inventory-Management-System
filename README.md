@@ -33,6 +33,9 @@ To learn the basics of inventory management, user interfaces, and external API i
 ## 📝 Assignment report
 - A written report in Swedish
 - Descriptions and details of functions
+- Design changes
+  - Visual
+  - Implementation
 - Class Diagrams
 
 - - [View the project report (PDF)](./Documentation-Report.pdf)

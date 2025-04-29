@@ -35,4 +35,4 @@ To learn the basics of inventory management, user interfaces, and external API i
 - Descriptions and details of functions
 - Class Diagrams
 
-- - [View the project report (PDF)](./MediaStore_Report.pdf)
+- - [View the project report (PDF)](./Documentation-Report.pdf)

@@ -40,6 +40,7 @@
             this.removeButton = new System.Windows.Forms.Button();
             this.orderProductButton = new System.Windows.Forms.Button();
             this.reduceStockButton = new System.Windows.Forms.Button();
+            this.syncButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.booksDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gamesDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDataGrid)).BeginInit();
@@ -198,10 +199,21 @@
             this.reduceStockButton.UseVisualStyleBackColor = true;
             this.reduceStockButton.Click += new System.EventHandler(this.reduceStockButton_Click);
             // 
+            // syncButton
+            // 
+            this.syncButton.Location = new System.Drawing.Point(69, 3);
+            this.syncButton.Name = "syncButton";
+            this.syncButton.Size = new System.Drawing.Size(118, 23);
+            this.syncButton.TabIndex = 13;
+            this.syncButton.Text = "Sync Inventory";
+            this.syncButton.UseVisualStyleBackColor = true;
+            this.syncButton.Click += new System.EventHandler(this.syncButton_Click);
+            // 
             // InventoryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.syncButton);
             this.Controls.Add(this.reduceStockButton);
             this.Controls.Add(this.orderProductButton);
             this.Controls.Add(this.removeButton);
@@ -238,5 +250,6 @@
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Button orderProductButton;
         private System.Windows.Forms.Button reduceStockButton;
+        private System.Windows.Forms.Button syncButton;
     }
 }

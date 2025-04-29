@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 using DVGB07_MediaStore;
 using DVGB07_MediaStore.Dialogs;
 
@@ -283,6 +286,79 @@ namespace Media_Store
 
                 CSVHandler.SaveProducts(inventoryProducts);
                 LoadProducts();
+            }
+        }
+
+        private void syncButton_Click(object sender, EventArgs e)
+        {
+            try {
+                WebClient client = new WebClient();
+                var text = client.DownloadString("https://hex.cse.kau.se/~jonavest/csharp-api");
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(text);
+
+                if (text.Contains("<error>"))
+                {
+                    MessageBox.Show("Error fetching data from central storage.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                XmlNodeList bookNodes = doc.SelectNodes("//book");
+                XmlNodeList gameNodes = doc.SelectNodes("//game");
+                XmlNodeList movieNodes = doc.SelectNodes("//movie");
+
+                List<Product> centralProducts = new List<Product>();
+
+                foreach (XmlNode bookNode in bookNodes)
+                    centralProducts.Add(GetProductFromXmlNode(bookNode));
+                foreach (XmlNode gameNode in gameNodes)
+                    centralProducts.Add(GetProductFromXmlNode(gameNode));
+                foreach (XmlNode movieNode in movieNodes)
+                    centralProducts.Add(GetProductFromXmlNode(movieNode));
+
+                foreach (var centralProduct in centralProducts)
+                {
+                    var localProduct = inventoryProducts.FirstOrDefault(p => p.PID == centralProduct.PID);
+                    if (localProduct != null)
+                    {
+                        localProduct.Price = centralProduct.Price;
+                        localProduct.Stock = centralProduct.Stock;
+                    }
+                }
+
+                CSVHandler.SaveProducts(inventoryProducts);
+                LoadProducts();
+
+                MessageBox.Show("Products successfully synced with central storage.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (WebException ex)
+            {
+                MessageBox.Show("Network error while fetcing data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (XmlException ex)
+            {
+                MessageBox.Show("Error parsing XML: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private Product GetProductFromXmlNode(XmlNode node)
+        {
+            try
+            {
+                int pid = int.Parse(node.SelectSingleNode("id").InnerText);
+                int stock = int.Parse(node.SelectSingleNode("stock").InnerText);
+                int price = int.Parse(node.SelectSingleNode("price").InnerText);
+                string name = node.SelectSingleNode("name").InnerText;
+
+                return new Product(pid, name, price, stock);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error parsing product node: {ex.Message}");
             }
         }
     }

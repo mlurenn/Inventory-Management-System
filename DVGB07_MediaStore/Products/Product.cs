@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Media_Store
 {
-    internal abstract class Product
+    internal class Product
     {
         public int PID { get; set; }
         public string Name { get; set; }

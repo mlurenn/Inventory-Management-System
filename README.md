@@ -29,3 +29,10 @@ The second version of the lab introduces a feature to synchronize the inventory 
 ## 📌 Purpose
 
 To learn the basics of inventory management, user interfaces, and external API integration in a business system.
+
+## 📝 Assignment report
+- A written report in Swedish
+- Descriptions and details of functions
+- Class Diagrams
+
+- - [View the project report (PDF)](./MediaStore_Report.pdf)
